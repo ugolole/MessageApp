@@ -12,16 +12,19 @@ namespace Message.ViewModels{
     #region properties
         //Id for current message view
         public int Id{get; set;}
-
+        
+        
+        //Message storeed 
+        public string Content {get; set;}
+        
+        
         //Date created for current message
         public DateTime DateCreated{get; set;}
 
-        //Message storeed 
-        public string Message {get; set;}
 
         //status of the message 
+        [DefaultValue(0)]
         public int status {get; set;}
-
     #endregion properties
     }
 }
