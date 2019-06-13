@@ -16,8 +16,8 @@ namespace Message.Data{
         #region Methods
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Message>().ToTable("Message");
-            modelBuilder.Entity<Message>().Property(i => i.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Message>().ToTable("Message"); //set table name to message 
+            modelBuilder.Entity<Message>().Property(i => i.Id).ValueGeneratedOnAdd(); // set auto-generate Id value
 
             //no other relationship are present
         }
