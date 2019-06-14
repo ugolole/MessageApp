@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore.ChangeTracking; 
 
 namespace Message.Data{
-    public class DbSeeder{
+    public static class DbSeeder{
 
        #region Public methods
         public static void Seed(ApplicationDbContext dbConext){

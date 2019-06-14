@@ -43,7 +43,17 @@ namespace Message
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            //updating the use of static files in Message app 
+            app.UseStaticFiles(new StaticFileOptions(){
+                OnPrepareResponse = (context) =>
+                {
+                    //Disable caching for all static files
+                    context.Context.Response.Headers["Cache-Control"] = Configuration["StaticFiles:Headers:Cache-Control"];
+                    context.Context.Response.Headers["Pragma"] = Configuration["StaticFiles:Headers:Pragma"];
+                    context.Context.Response.Headers["Expires"] = Configuration["StaticFiles:Headers:Expires"];
+                }
+            });
             app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
@@ -65,6 +75,19 @@ namespace Message
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            //create a service scope to get applicationDbContext instance using DI
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope()){
+                
+                //create dbContext variable using ApplicationDbContext created class
+                var dbContext = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+
+                //create the Db if it does not exit and applies any pending migration
+                dbContext.Database.Migrate();
+
+                //seed the database with data
+                DbSeeder.Seed(dbContext);
+            }
         }
     }
 }
