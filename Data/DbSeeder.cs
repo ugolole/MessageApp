@@ -27,7 +27,8 @@ namespace Message.Data{
             for ( int i = 0; i<=num; i++){
                 CreateMessage(dbConext, i, createdDate.AddDays(-num));
             }
-            
+            #endif
+
             //create message 1
             EntityEntry<Message> m1 = dbConext.Messages.Add( new Message{
                 Content = "Remember to be the best you can ",
@@ -41,7 +42,8 @@ namespace Message.Data{
                 DateCreated = new DateTime(2015, 02, 02, 12 , 20, 00),
                 Status = 0
             });
-            #endif
+            dbConext.SaveChanges();
+            
         }
        #endregion Seed methods
 
