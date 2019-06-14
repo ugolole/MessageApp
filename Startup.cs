@@ -29,6 +29,12 @@ namespace Message
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            //add the entity frame work support for sql server
+            services.AddEntityFrameworkSqlServer();
+
+            //add the connection string to the sql server
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
