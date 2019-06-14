@@ -8,9 +8,7 @@ namespace Message.Data{
     public class ApplicationDbContext : DbContext{
         
         #region Constructor
-        public ApplicationDbContext(DbContextOptions options) : base(options){
-
-        }
+        public ApplicationDbContext(DbContextOptions options) : base(options){}
         #endregion Constructor
 
         #region Methods

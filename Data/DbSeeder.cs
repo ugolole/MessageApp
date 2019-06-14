@@ -6,8 +6,6 @@ using System.Linq;
 namespace Message.Data{
     public class DbSeeder{
 
-        #region Constructor
-        public DbSeeder(){}
-        #endregion Constructor
+       
     }
 }
