@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using System.ComponentModel;
 
-namespace Message.ViewModels{
+namespace MessageApp.ViewModels{
     public class MessageViewModel{
 
     #region constructor

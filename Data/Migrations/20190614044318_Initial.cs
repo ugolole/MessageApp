@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Message.Data.Migrations
+namespace MessageApp.Data.Migrations
 {
     public partial class Initial : Migration
     {

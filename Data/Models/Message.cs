@@ -1,9 +1,12 @@
+//adding support package for basic c# entities
 using System;
+
+//adding support package for database rules
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Message.Data{
+namespace MessageApp.Data{
     public class Message{
 
         #region Constructor

@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Message.Data; //add support for applicationDBContext.
+using MessageApp.Data; //add support for applicationDBContext.
 using Microsoft.EntityFrameworkCore; //add support for entity frame method like migrate
 
-namespace Message
+namespace MessageApp
 {
     public class Startup
     {
