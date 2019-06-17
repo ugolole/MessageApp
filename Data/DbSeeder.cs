@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.ChangeTracking; 
 
-namespace Message.Data{
+namespace MessageApp.Data{
     public static class DbSeeder{
 
        #region Public methods
@@ -25,7 +25,7 @@ namespace Message.Data{
 
             //create a list of 5 messages
             for ( int i = 0; i<=num; i++){
-                CreateMessage(dbConext, i, createdDate.AddDays(-num));
+                CreateMessage(dbConext, i, createdDate.AddDays(-i));
             }
             #endif
 
