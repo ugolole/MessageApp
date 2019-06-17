@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MessageApp.Data; //add support for applicationDBContext.
+using Microsoft.EntityFrameworkCore; //add support for entity frame method like migrate
 
-namespace Message
+namespace MessageApp
 {
     public class Startup
     {
@@ -27,6 +29,12 @@ namespace Message
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            //add the entity frame work support for sql server
+            services.AddEntityFrameworkSqlServer();
+
+            //add the connection string to the sql server
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +51,17 @@ namespace Message
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            //updating the use of static files in Message app 
+            app.UseStaticFiles(new StaticFileOptions(){
+                OnPrepareResponse = (context) =>
+                {
+                    //Disable caching for all static files
+                    context.Context.Response.Headers["Cache-Control"] = Configuration["StaticFiles:Headers:Cache-Control"];
+                    context.Context.Response.Headers["Pragma"] = Configuration["StaticFiles:Headers:Pragma"];
+                    context.Context.Response.Headers["Expires"] = Configuration["StaticFiles:Headers:Expires"];
+                }
+            });
             app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
@@ -65,6 +83,19 @@ namespace Message
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            //create a service scope to get applicationDbContext instance using DI
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope()){
+                
+                //create dbContext variable using ApplicationDbContext created class
+                var dbContext = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+
+                //create the Db if it does not exit and applies any pending migration
+                dbContext.Database.Migrate();
+
+                //seed the database with data
+                DbSeeder.Seed(dbContext);
+            }
         }
     }
 }
