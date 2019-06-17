@@ -24,7 +24,7 @@ namespace MessageApp.ViewModels{
 
         //status of the message 
         [DefaultValue(0)]
-        public int status {get; set;}
+        public int Status {get; set;}
     #endregion properties
     }
 }

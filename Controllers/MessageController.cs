@@ -72,7 +72,7 @@ namespace MessageApp.Controllers{
             //set data received from model into the mapped variable
             model.Content = message.Content;
             model.DateCreated = DateTime.Now;
-            model.status = message.Status;
+            model.Status = message.Status;
 
             //add the mapped variable into the dbContext.
             DbContext.Messages.Add(message);
