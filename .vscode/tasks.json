@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Message.csproj"
+                "${workspaceFolder}/MessageApp.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -17,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Message.csproj"
+                "${workspaceFolder}/MessageApp.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -28,7 +28,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/Message.csproj"
+                "${workspaceFolder}/MessageApp.csproj"
             ],
             "problemMatcher": "$tsc"
         }
