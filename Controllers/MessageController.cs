@@ -47,6 +47,7 @@ namespace MessageApp.Controllers{
         }
 
         //get a list of all message arranged by order of data created.
+        //https://localhost:44398/api/Message/all
         [HttpGet("All")]
         public IActionResult all(){
             //get the values from the database.
@@ -60,6 +61,9 @@ namespace MessageApp.Controllers{
         }
 
         //add a new message to the application server side
+        //[FromBody] is used to make the Web API use content-Type to select formatter
+        //This is because the request body might be stored in a non-buffered stream 
+        //that can only be read once.
         [HttpPut]
         public IActionResult Put([FromBody]MessageViewModel model){
             //return a generic HTTP status 500 (server error )

@@ -17,7 +17,7 @@ namespace MessageApp.Data{
         #endregion Constructor
 
         #region Methods
-        
+    
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Message>().ToTable("Message"); //set table name to message 

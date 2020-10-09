@@ -231,3 +231,7 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Removing apple stuff
+.DS_Store
+._.DS_Store
