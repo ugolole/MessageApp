@@ -47,6 +47,7 @@ namespace MessageApp.Controllers{
         }
 
         //get a list of all message arranged by order of data created.
+        //https://localhost:44398/api/Message/all
         [HttpGet("All")]
         public IActionResult all(){
             //get the values from the database.
